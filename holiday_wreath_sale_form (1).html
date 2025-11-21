@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holiday Wreath Sale</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: red;
+    }
+    h2 {
+      margin-top: 5px;
+      font-weight: bold;
+      color: red;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 10px;
+    }
+    input[type="text"], input[type="email"] {
+      width: 50%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+    .bold-caps {
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Holiday Wreath Sale</h1>
+
+  <img src="https://www.christmasforest.com/img/imgDB/img896.png" alt="Christmas Wreath" width="300" />
+
+  <h2>Support Massapequa Chiefs Baseball</h2>
+
+  <p>Sponsored by the Chiefs Baseball Club<br><br>
+  We are taking pre-orders now and will be selling the items at the High School on <br>
+  Saturday, December 6th with rain date Sunday December 7th between 9am and 2pm<br>
+  Weather Permitting</p>
+
+  <p class="bold-caps">ALL PRE-ORDERS MUST BE RECEIVED BY NOVEMBER 25th</p>
+
+  <table>
+    <tr>
+      <th>Products</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+    </tr>
+    <tr>
+      <td>Decorated Wreath</td>
+      <td>$25.00</td>
+      <td><input type="number" min="0"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Decorated Cross</td>
+      <td>$30.00</td>
+      <td><input type="number" min="0"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Decorated Grave Blankets Medium</td>
+      <td>$35.00</td>
+      <td><input type="number" min="0"></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="3"><strong>Total</strong></td>
+      <td></td>
+    </tr>
+  </table>
+
+  <form>
+    <input type="text" placeholder="Name"><br>
+    <input type="text" placeholder="Phone Number"><br>
+    <input type="email" placeholder="Email"><br>
+    <input type="text" placeholder="School"><br>
+  </form>
+
+  <p>If you have any questions, please call Lance Cohen @ 646-529-4398</p>
+
+  <p>Checks should be made payable to Chiefs Baseball Club and mailed to:<br>
+  169 Biltmore Blvd. Massapequa, NY 11758 along with the completed form.<br>
+  Or email completed form to lancecohen3@gmail.com and pay through Venmo @ChiefsBaseballClub</p>
+
+<script>
+function calculateTotals() {
+  const prices = [25, 30, 35];
+  const qtyInputs = document.querySelectorAll('table input[type="number"]');
+  const totalCells = document.querySelectorAll('table tr td:last-child:not([colspan])');
+  let grandTotal = 0;
+
+  qtyInputs.forEach((input, i) => {
+    const qty = parseInt(input.value) || 0;
+    const lineTotal = qty * prices[i];
+    totalCells[i].textContent = "$" + lineTotal.toFixed(2);
+    grandTotal += lineTotal;
+  });
+
+  const grandTotalCell = document.querySelector('table tr:last-child td:last-child');
+  if (grandTotalCell) grandTotalCell.textContent = "$" + grandTotal.toFixed(2);
+}
+
+document.querySelectorAll('table input[type="number"]').forEach(input => {
+  input.addEventListener('input', calculateTotals);
+});
+</script>
+</body>
+</html>
